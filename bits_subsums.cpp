@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#define int long long int
 
 using namespace std;
 
@@ -18,7 +19,7 @@ vector<int> giveSubsetSums(vector<int> a) {
 	return res;
 }
 
-int main()
+int32_t main()
 {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
