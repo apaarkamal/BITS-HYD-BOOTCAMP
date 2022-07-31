@@ -1,79 +1,59 @@
 #include<bits/stdc++.h>
-#define int long long int
 
 using namespace std;
 
-const int sz = 2, mod = 1e9 + 7;
+int cnt = 0;
 
-struct Matrix {
-	int mat[sz][sz];
-	Matrix () {
-		memset(mat, 0, sizeof(mat));
-	}
-	void identity() {
-		memset(mat, 0, sizeof(mat));
-		for (int i = 0; i < sz; i++) {
-			mat[i][i] = 1;
-		}
-	}
-	void print() {
-		for (int i = 0; i < sz; i++) {
-			for (int j = 0; j < sz; j++) {
-				cout << mat[i][j] << " ";
-			}
-			cout << '\n';
-		}
-		cout << '\n';
-	}
-	// O(sz^3)
-	Matrix operator* (const Matrix &a) const {
-		Matrix res;
-		for (int i = 0; i < sz; i++) {
-			for (int j = 0; j < sz; j++) {
-				// cell i and j
-				// ith row * jth column
-				for (int k = 0; k < sz; k++) {
-					res.mat[i][j] = (res.mat[i][j] + mat[i][k] * a.mat[k][j]) % mod;
-				}
-			}
-		}
-		return res;
-	}
-};
+const int N = 100;
+int memo[N];
 
-// O((sz^3)*(log(n)))
-int fib(int n) {
-	if (n == 0) return 0;
-	if (n <= 2) return 1;
+int f(int n) {
+	cnt++;
+	if (n <= 1) return n;
 
-	Matrix res;
-	res.identity();
+	// memoise
+	if (memo[n] != -1) return memo[n];
 
-	Matrix t;
-	t.mat[0][0] = t.mat[0][1] = t.mat[1][0] = 1;
-	t.mat[1][1] = 0;
-
-	n--;
-	while (n) {
-		if (n & 1) res = res * t;
-		t = t * t;
-		n /= 2;
-	}
-
-	return res.mat[0][0];
+	return memo[n] = f(n - 1) + f(n - 2);
 }
 
-int32_t main()
+int main()
 {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 
-	int n;
-	cin >> n;
+	// 21891
 
-	// O(log(n))
-	cout << fib(60);
+	memset(memo, -1, sizeof(memo));
+
+	for (int i = 0; i <= 20; i++) {
+		cnt = 0;
+	}
+
+	f(20);
+	// cout << i << " " << cnt << '\n';
+	cout << cnt;
+
+
+	int fib[N];
+	fib[0] = 0; fib[1] = 1;
+	// tabulation
+	for (int i = 2; i <= 20; i++) {
+		fib[i] = fib[i - 1] + fib[i - 2];
+	}
+
+
+
+
+
+
+
+
+
+
+
 
 
 	return 0;
+
 }
