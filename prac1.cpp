@@ -2,26 +2,17 @@
 
 using namespace std;
 
-void tower_of_hanoi(int n, char source, char helper, char destination) {
-	if (n == 0) return;
-
-	tower_of_hanoi(n - 1, source, destination, helper);
-	cout << source << " --> " << destination << '\n';
-	tower_of_hanoi(n - 1, helper, source, destination);
-
-}
-
 int main()
 {
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
 
-	int n;
-	cin >> n;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j += i) {
 
-	tower_of_hanoi(n, 'A', 'B', 'C');
+        }
+    }
 
 
-
-	return 0;
+    return 0;
 }
